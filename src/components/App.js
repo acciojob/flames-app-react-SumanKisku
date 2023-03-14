@@ -1,6 +1,5 @@
 import { set } from "cypress/types/lodash";
 import {useState} from "react";
-import '../styles/App.css';
 
 function App() {
 
@@ -8,16 +7,25 @@ function App() {
     const [secondName, setSecondName] = useState("");
     const [answer, setAnswer] = useState("");
     function getFirstName (e) {
-        setFirstName(e.target.value)
+        setFirstName(e.target.value);
+        console.log(firstName);
+
     }
     function getSecondName(e) {
-        setSecondName(e.target.value)
+        setSecondName(e.target.value);
+        console.log(secondName);
     }
 
     function calculate() {
         if(firstName.length === 0 || secondName.length === 0) {
-            alert("Please enter valid input");
+
+            setAnswer("Please enter valid input");
+        console.log("calculate err");
+            
         } else {
+
+        console.log("calculate 2");
+
             let counter1 = {};
             let counter2 = {};
             for(let key in firstName) {
@@ -57,13 +65,14 @@ function App() {
                 setAnswer("Affection");
             } else if(answer === 4) {
                 setAnswer("Marriage")
-            }
-            else if(answer === 5) {
+            } else if(answer === 5) {
                 setAnswer("Enemy");
             }
             else {
                 setAnswer("Siblings");
             }
+    }
+}
     function clear() {
         setFirstName("");
         setSecondName("");
@@ -72,16 +81,15 @@ function App() {
         return(
             <div id="main">
                {/* Do not remove the main div */}
-               <form>
+
                 <input type="text" onChange={getFirstName} data-test-id="input1" value={firstName} placeholder="Enter first name" />
                 <input type="text" onChange={getSecondName} data-testid="input2" value={secondName} placeholder="Enter second name" />
                 <button onClick={calculate} data-testid="calculate_relationship">Calculate Relationship Future</button>
                 <button onClick={clear} data-testid="clear">Clear</button>
-               </form>
+
                <h3 data-testid="answer">{answer}</h3>
             </div>
         ) 
 }
-
 
 export default App;
