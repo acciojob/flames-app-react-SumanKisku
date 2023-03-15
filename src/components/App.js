@@ -1,5 +1,6 @@
 import { set } from "cypress/types/lodash";
 import {useState} from "react";
+import "../styles/App.css"
 
 function App() {
 
@@ -8,24 +9,19 @@ function App() {
     const [answer, setAnswer] = useState("");
     function getFirstName (e) {
         setFirstName(e.target.value);
-        console.log(firstName);
 
     }
     function getSecondName(e) {
         setSecondName(e.target.value);
-        console.log(secondName);
     }
 
     function calculate() {
         if(firstName.length === 0 || secondName.length === 0) {
 
             setAnswer("Please enter valid input");
-        console.log("calculate err");
+        
             
         } else {
-
-        console.log("calculate 2");
-
             let counter1 = {};
             let counter2 = {};
             for(let key in firstName) {
@@ -76,6 +72,7 @@ function App() {
     function clear() {
         setFirstName("");
         setSecondName("");
+        setAnswer("");
     }
     
         return(
